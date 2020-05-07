@@ -1,5 +1,9 @@
 import React from "react";
 
-const Home = () => <div>Home</div>;
+class Home extends React.Component {
+  render() {
+    return <div>title</div>;
+  }
+}
 
 export default Home;

@@ -1,13 +1,13 @@
 import { Meteor } from "meteor/meteor";
 import { check } from "meteor/check";
-import { Accounts } from "meteor/account";
+import { Accounts } from "meteor/accounts-base";
 
 Meteor.methods({
-  "users.insert"(email, password, username, phonenumber) {
-    check(email, string);
-    check(password, string);
-    check(username, string);
-    check(phonenumber, string);
+  "users.signUp"(email, password, username, phonenumber) {
+    check(email, String);
+    check(password, String);
+    check(username, String);
+    check(phonenumber, String);
 
     Accounts.createUser({
       email,
@@ -15,9 +15,11 @@ Meteor.methods({
       username,
       protile: { phonenumber },
     });
+
+    return true;
   },
   "users.delete"(userId) {
-    check(userId, string);
+    check(userId, String);
 
     /*if(userId !== this.user.id) {
         throw new Meteor.Error("Not Authorized")
@@ -27,16 +29,16 @@ Meteor.methods({
   },
   "users.update"() {},
   "users.getProfile"(userId) {
-    check(userId, string);
+    check(userId, String);
 
     /*if(userId !== this.user.id) {
         throw new Meteor.Error("Not Authorized")
     }*/
     return Meteor.users.findOne(userId);
   },
-  "users.passwordLogIn"(user, password) {
-    check(user, string);
-    check(password, string);
+  "users.signIn"(user, password) {
+    check(user, String);
+    check(password, String);
 
     Meteor.loginWithPassword(user, password);
   },

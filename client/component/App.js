@@ -7,29 +7,30 @@ import Profile from "../routes/profile";
 import SignIn from "../routes/SignIn";
 import SignUp from "../routes/SignUp";
 import Write from "../routes/Write";
+import { Meteor } from "meteor/meteor";
 
 const App = () => (
   <BrowserRouter>
-    <LogedInRoutes />
+    {Meteor.currentUser ? <LoggedInRoutes /> : <LoggedOutRoutes />}
   </BrowserRouter>
 );
 
-LogedInRoutes = () => (
+LoggedInRoutes = () => (
   <Switch>
     <Route path={"/"} exact={true} component={Home} />
     <Route path={"/favorite"} exact={true} component={Favorite} />
     <Route path={"/profile"} exact={true} component={Profile} />
     <Route path={"/posts/:postId"} exact={true} component={PostDetail} />
-    <Route path={"/post_write"} exact={true} component={Write} />
+    <Route path={"/write_post"} exact={true} component={Write} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
 
-LogedOutRoutes = () => (
+LoggedOutRoutes = () => (
   <Switch>
     <Route path={"/"} exact={true} component={Home} />
-    <Route path={"signin"} exact={true} component={SignIn} />
-    <Route path={"signup"} exact={true} component={SignUp} />
+    <Route path={"/signin"} exact={true} component={SignIn} />
+    <Route path={"/signup"} exact={true} component={SignUp} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
