@@ -13,37 +13,13 @@ Meteor.methods({
       email,
       password,
       username,
-      protile: { phonenumber },
+      profile: { phonenumber },
     });
 
     return true;
   },
-  "users.delete"(userId) {
-    check(userId, String);
-
-    /*if(userId !== this.user.id) {
-        throw new Meteor.Error("Not Authorized")
-      }*/
-
-    Meteor.users.remove(userId);
+  "users.delete"() {
+    Meteor.users.remove(Meteor.user()._id);
   },
   "users.update"() {},
-  "users.getProfile"(userId) {
-    check(userId, String);
-
-    /*if(userId !== this.user.id) {
-        throw new Meteor.Error("Not Authorized")
-    }*/
-    return Meteor.users.findOne(userId);
-  },
-  "users.signIn"(user, password) {
-    check(user, String);
-    check(password, String);
-
-    Meteor.loginWithPassword(user, password);
-  },
-
-  "users.logOut"() {
-    Meteor.logout();
-  },
 });

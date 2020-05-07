@@ -5,13 +5,17 @@ import { check } from "meteor/check";
 export const Posts = new Mongo.Collection("posts");
 
 Meteor.methods({
-  "posts.insert"(title, text) {
+  "posts.create"(title, description, image, text) {
     check(title, String);
+    check(description, String);
+    check(image, String);
     check(text, String);
 
     Posts.insert({
       title,
       text,
+      description,
+      image,
       createdAt: new Date(),
     });
   },

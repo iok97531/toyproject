@@ -8,6 +8,7 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       password: "",
+      passwordConfirm: "",
       userName: "",
       phoneNumber: "",
     };
@@ -20,6 +21,12 @@ class SignUp extends React.Component {
         <input type="email" name="email" onChange={this.handleChange} />
         <p>password</p>
         <input type="password" name="password" onChange={this.handleChange} />
+        <p>password confirm</p>
+        <input
+          type="password"
+          name="passwordConfirm"
+          onChange={this.handleChange}
+        />
         <p>user name</p>
         <input type="text" name="userName" onChange={this.handleChange} />
         <p>phone number</p>
@@ -32,7 +39,17 @@ class SignUp extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password, userName, phoneNumber } = this.state;
+    const {
+      email,
+      password,
+      passwordConfirm,
+      userName,
+      phoneNumber,
+    } = this.state;
+
+    if (password !== passwordConfirm) {
+      throw new Meteor.Error("Password does not match");
+    }
 
     Meteor.call(
       "users.signUp",

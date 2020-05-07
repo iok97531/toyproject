@@ -28,11 +28,12 @@ class SignIn extends React.Component {
 
     const { user, password } = this.state;
 
-    Meteor.logInWithPassword(user, password, (error) => {
+    Meteor.loginWithPassword(user, password, (error) => {
       if (error) {
         console.log(error.reason);
       }
     });
+    console.log(Meteor.user());
   };
 
   handleChange = (event) => {
