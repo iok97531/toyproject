@@ -1,6 +1,7 @@
 import React from "react";
+import { Meteor } from "meteor/meteor";
 
-class Write extends React.Component {
+class WritePost extends React.Component {
   constructor(props) {
     super(props);
 
@@ -49,4 +50,4 @@ class Write extends React.Component {
   };
 }
 
-export default Write;
+export default WritePost;
