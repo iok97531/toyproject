@@ -12,17 +12,17 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "users.signUp"(email, password, username, phonenumber) {
+  "users.signUp"(email, password, username, phonenumber, favoriteposts) {
     check(email, String);
     check(password, String);
     check(username, String);
     check(phonenumber, String);
-
+    // favoriteposts is array and has postIds
     Accounts.createUser({
       email,
       password,
       username,
-      profile: { phonenumber },
+      profile: { phonenumber, favoriteposts },
     });
 
     return true;

@@ -25,7 +25,6 @@ Meteor.methods({
       text,
       description,
       image,
-      isFav: false,
       createdAt: new Date(),
     });
   },

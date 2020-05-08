@@ -9,7 +9,17 @@ class PostDetailPresenter extends React.Component {
     if (!this.props.post) {
       return <p>error</p>;
     }
-    const { _id: postId, title, description, image, text } = this.props.post;
+    const {
+      _id: postId,
+      title,
+      description,
+      image,
+      text,
+      onSubmit,
+      onToggle,
+    } = this.props.post;
+
+    const isFav = false;
 
     return (
       <div>
@@ -22,6 +32,11 @@ class PostDetailPresenter extends React.Component {
           <p>{image}</p>
           <p>{text}</p>
         </div>
+        <form onSubmit={onSubmit}>
+          <input type="text" name="text" />
+          <input type="submit" name="submit" />
+        </form>
+        <button onClick={onToggle}>{isFav ? "on" : "off"}</button>
       </div>
     );
   }
