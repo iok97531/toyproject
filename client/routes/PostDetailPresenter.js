@@ -1,4 +1,6 @@
 import React from "react";
+import CommentForm from "../component/CommenttForm";
+import Comment from "../component/Comment";
 
 class PostDetailPresenter extends React.Component {
   constructor(props) {
@@ -15,7 +17,6 @@ class PostDetailPresenter extends React.Component {
       description,
       image,
       text,
-      onSubmit,
       onToggle,
     } = this.props.post;
 
@@ -32,11 +33,13 @@ class PostDetailPresenter extends React.Component {
           <p>{image}</p>
           <p>{text}</p>
         </div>
-        <form onSubmit={onSubmit}>
-          <input type="text" name="text" />
-          <input type="submit" name="submit" />
-        </form>
+        <CommentForm postId={postId} />
         <button onClick={onToggle}>{isFav ? "on" : "off"}</button>
+        <div>
+          {this.props.comments.map((comment) => (
+            <Comment key={comment._id} text={comment.text} />
+          ))}
+        </div>
       </div>
     );
   }

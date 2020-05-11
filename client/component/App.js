@@ -1,14 +1,10 @@
-import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
+import React from "react";
 import AppPresenter from "./AppPresenter";
+import { withTracker } from "meteor/react-meteor-data";
 
 const App = withTracker(() => {
-  const userHandle = Meteor.subscribe("userData");
-  const loading = userHandle.ready();
   return {
-    loading,
-    user: Meteor.user(),
+    user: Meteor.userId(),
   };
 })(AppPresenter);
-
 export default App;

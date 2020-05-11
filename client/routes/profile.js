@@ -1,15 +1,17 @@
 import { Meteor } from "meteor/meteor";
 import React from "react";
+import { withTracker } from "meteor/react-meteor-data";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { user: Meteor.user() };
   }
 
   render() {
-    const { username, emails, profile } = this.state.user;
+    if (!this.props.user.length) {
+      return null;
+    }
+    const { username, emails, profile } = this.props.user[0];
     return (
       <div>
         <p>Profile</p>
@@ -26,4 +28,8 @@ class Profile extends React.Component {
   };
 }
 
-export default Profile;
+export default withTracker(() => {
+  return {
+    user: Meteor.users.find(Meteor.userId()).fetch(),
+  };
+})(Profile);

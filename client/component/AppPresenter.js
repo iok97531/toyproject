@@ -7,6 +7,7 @@ import Profile from "../routes/Profile";
 import SignIn from "../routes/SignIn";
 import SignUp from "../routes/SignUp";
 import WritePost from "../routes/WritePost";
+import { Meteor } from "meteor/meteor";
 
 class AppPresenter extends React.Component {
   constructor(props) {
@@ -14,8 +15,6 @@ class AppPresenter extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <BrowserRouter>
         {this.props.user ? <LoggedInRoutes /> : <LoggedOutRoutes />}
@@ -31,6 +30,7 @@ LoggedInRoutes = () => (
     <Route path={"/profile"} exact={true} component={Profile} />
     <Route path={"/posts/:postId"} exact={true} component={PostDetail} />
     <Route path={"/write_post"} exact={true} component={WritePost} />
+    <Redirect from="*" to="/" />
   </Switch>
 );
 
@@ -39,6 +39,7 @@ LoggedOutRoutes = () => (
     <Route path={"/"} exact={true} component={Home} />
     <Route path={"/signin"} exact={true} component={SignIn} />
     <Route path={"/signup"} exact={true} component={SignUp} />
+    <Redirect from="*" to="/" />
   </Switch>
 );
 

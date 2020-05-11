@@ -31,4 +31,14 @@ Meteor.methods({
     Meteor.users.remove(Meteor.user()._id);
   },
   "users.update"() {},
+  "users.toggleFav"(postId) {
+    check(postId, String);
+
+    posts = Meteor.user().profile.favoriteposts;
+    if (posts.indexOf(postId)) {
+      posts.splice(posts.indexOf(postId), 1);
+    } else {
+      posts.push(postId);
+    }
+  },
 });
