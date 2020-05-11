@@ -12,17 +12,17 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "users.signUp"(email, password, username, phonenumber, favoriteposts) {
+  "users.signUp"(email, password, username, phonenumber) {
     check(email, String);
     check(password, String);
     check(username, String);
     check(phonenumber, String);
-    // favoriteposts is array and has postIds
+
     Accounts.createUser({
       email,
       password,
       username,
-      profile: { phonenumber, favoriteposts },
+      profile: { phoneNumber, favPostIds: [] },
     });
 
     return true;
@@ -34,11 +34,21 @@ Meteor.methods({
   "users.toggleFav"(postId) {
     check(postId, String);
 
-    posts = Meteor.user().profile.favoriteposts;
-    if (posts.indexOf(postId)) {
+    posts = Meteor.user().profile.favPostIds;
+
+    if (!posts.indexOf(postId)) {
       posts.splice(posts.indexOf(postId), 1);
     } else {
       posts.push(postId);
     }
+
+    Meteor.users.update(Meteor.userId(), {
+      $set: {
+        profile: {
+          phoneNumber: Meteor.user().profile.phoneNumber,
+          favPostIds: posts,
+        },
+      },
+    });
   },
 });

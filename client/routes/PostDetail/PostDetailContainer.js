@@ -1,19 +1,28 @@
 import React from "react";
 import PostDetailPresenter from "./PostDetailPresenter";
 import { Meteor } from "meteor/meteor";
-import { Posts } from "../../imports/api/posts";
-import { Comments } from "../../imports/api/comments";
+import { Posts } from "../../../imports/api/posts";
+import { Comments } from "../../../imports/api/comments";
 import { withTracker } from "meteor/react-meteor-data";
 
-class PostDetail extends React.Component {
-  handleToggleFav = (event) => {};
+class PostDetailContainer extends React.Component {
+  handleToggleFav = () => {
+    Meteor.call("users.toggleFav", this.props.post._id, (error, result) => {
+      if (error) {
+        console.log(error);
+      }
+      if (result) {
+        console.log(result);
+      }
+    });
+  };
 
   render() {
     return (
       <PostDetailPresenter
         post={this.props.post}
         comments={this.props.comments}
-        onClick={this.handleToggleFav}
+        onToggle={this.handleToggleFav}
       />
     );
   }
@@ -31,4 +40,4 @@ export default withTracker((props) => {
     post: Posts.find().fetch()[0],
     comments: Comments.find().fetch(),
   };
-})(PostDetail);
+})(PostDetailContainer);

@@ -1,27 +1,18 @@
 import React from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import Favorite from "../routes/Favorite";
-import Home from "../routes/Home";
-import PostDetail from "../routes/PostDetail";
-import Profile from "../routes/Profile";
-import SignIn from "../routes/SignIn";
-import SignUp from "../routes/SignUp";
-import WritePost from "../routes/WritePost";
-import { Meteor } from "meteor/meteor";
+import Favorite from "../../routes/Favorite/";
+import Home from "../../routes/Home";
+import PostDetail from "../../routes/PostDetail";
+import Profile from "../../routes/Profile";
+import SignIn from "../../routes/SignIn";
+import SignUp from "../../routes/SignUp";
+import WritePost from "../../routes/WritePost";
 
-class AppPresenter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        {this.props.user ? <LoggedInRoutes /> : <LoggedOutRoutes />}
-      </BrowserRouter>
-    );
-  }
-}
+const AppPresenter = (props) => (
+  <BrowserRouter>
+    {props.user ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+  </BrowserRouter>
+);
 
 LoggedInRoutes = () => (
   <Switch>

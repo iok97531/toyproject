@@ -2,7 +2,7 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import CommentFormPresenter from "./CommentFormPresenter";
 
-class CommentForm extends React.Component {
+class CommentFormContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,4 +42,4 @@ class CommentForm extends React.Component {
   };
 }
 
-export default CommentForm;
+export default CommentFormContainer;

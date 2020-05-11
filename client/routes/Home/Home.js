@@ -1,8 +1,8 @@
 import React from "react";
 import { withTracker } from "meteor/react-meteor-data";
-import { Posts } from "../../imports/api/posts";
+import { Posts } from "../../../imports/api/posts";
 import { Meteor } from "meteor/meteor";
-import PostCard from "../component/PostCard";
+import PostCard from "../../component/PostCard";
 
 class Home extends React.Component {
   constructor(props) {

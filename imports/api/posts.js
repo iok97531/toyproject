@@ -34,10 +34,4 @@ Meteor.methods({
     Posts.remove(postId);
   },
   "posts.update"() {},
-  "posts.getPost"(postId) {
-    check(postId, String);
-
-    const Post = Posts.findOne({ _id: postId });
-    return Post;
-  },
 });

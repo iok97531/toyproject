@@ -1,6 +1,6 @@
 import React from "react";
-import CommentForm from "../component/CommenttForm";
-import Comment from "../component/Comment";
+import CommentForm from "../../component/CommentForm";
+import Comment from "../../component/Comment/Comment";
 
 class PostDetailPresenter extends React.Component {
   constructor(props) {
@@ -12,13 +12,9 @@ class PostDetailPresenter extends React.Component {
       return <p>error</p>;
     }
     const {
-      _id: postId,
-      title,
-      description,
-      image,
-      text,
       onToggle,
-    } = this.props.post;
+      post: { _id: postId, title, description, image, text },
+    } = this.props;
 
     const isFav = false;
 
