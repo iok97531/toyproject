@@ -29,6 +29,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
+        <header>header</header>
         <h2>Home</h2>
         <div>{this.renderPostCards()}</div>
       </div>

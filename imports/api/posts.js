@@ -8,8 +8,8 @@ if (Meteor.isServer) {
   Meteor.publish("posts", () => {
     return Posts.find();
   });
-  Meteor.publish("post", (postId) => {
-    return Posts.find({ _id: postId });
+  Meteor.publish("post", (_id) => {
+    return Posts.find(_id);
   });
 }
 

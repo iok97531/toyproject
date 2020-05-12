@@ -38,6 +38,6 @@ export default withTracker((props) => {
   return {
     loading,
     post: Posts.find().fetch()[0],
-    comments: Comments.find().fetch(),
+    comments: Comments.find({ postId }).fetch(),
   };
 })(PostDetailContainer);

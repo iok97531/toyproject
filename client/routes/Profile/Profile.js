@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import React from "react";
 import { withTracker } from "meteor/react-meteor-data";
+import { Button } from "semantic-ui-react";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Profile extends React.Component {
         <p>{emails[0].address}</p>
         <p>{username}</p>
         <p>{profile.phonenumber}</p>
-        <button onClick={this.handleClick}>LogOut</button>
+        <Button onClick={this.handleClick}>LogOut</Button>
       </div>
     );
   }

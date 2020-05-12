@@ -17,8 +17,8 @@ Meteor.methods({
 
     Comments.insert({
       postId,
-      userId: Meteor.userId(),
       text,
+      userId: this.userId(),
       createdAt: new Date(),
     });
   },
