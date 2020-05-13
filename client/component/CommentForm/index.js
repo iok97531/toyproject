@@ -1,2 +1,2 @@
-import CommentFormContainer from "./CommenttFormContainer";
+import CommentFormContainer from "./CommentFormContainer";
 export default CommentFormContainer;

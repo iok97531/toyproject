@@ -12,11 +12,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "users.signUp"(email, password, username, phonenumber) {
+  "users.signUp"(email, password, username, phoneNumber) {
     check(email, String);
     check(password, String);
     check(username, String);
-    check(phonenumber, String);
+    check(phoneNumber, String);
 
     Accounts.createUser({
       email,

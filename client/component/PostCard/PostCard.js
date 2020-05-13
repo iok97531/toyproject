@@ -9,8 +9,16 @@ class PostCard extends React.Component {
   render() {
     return (
       <Link to={`/posts/${this.props.postId}`}>
-        <p>{this.props.title}</p>
-        <p>{this.props.description}</p>
+        <div className={"post-card"}>
+          <p className={"title"}>{this.props.title}</p>
+          <p className={"description"}>{this.props.description}</p>
+          <div>
+            <span>♥</span>
+            <span>0</span>
+            <span>💬</span>
+            <span>0</span>
+          </div>
+        </div>
       </Link>
     );
   }

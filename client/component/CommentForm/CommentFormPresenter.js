@@ -1,10 +1,17 @@
 import React from "react";
+import { Form, TextArea, Button } from "semantic-ui-react";
 
 const CommentFormPresenter = (props) => (
-  <form onSubmit={props.onSubmit}>
-    <input type="text" name="text" onChange={props.onChange} />
-    <input type="submit" name="submit" />
-  </form>
+  <Form className={"comment-form"} onSubmit={props.onSubmit}>
+    <TextArea
+      type="text"
+      name="text"
+      placeholder={"Leave comments..."}
+      onChange={props.onChange}
+    />
+    <Button type="submit" name="submit">
+      SUBMIT
+    </Button>
+  </Form>
 );
-
 export default CommentFormPresenter;

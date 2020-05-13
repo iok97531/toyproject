@@ -1,6 +1,9 @@
 import React from "react";
 import CommentForm from "../../component/CommentForm";
 import Comment from "../../component/Comment/Comment";
+import Header from "../../component/Header";
+import { Button } from "semantic-ui-react";
+import { Meteor } from "meteor/meteor";
 
 class PostDetailPresenter extends React.Component {
   constructor(props) {
@@ -20,21 +23,24 @@ class PostDetailPresenter extends React.Component {
 
     return (
       <div>
-        <h2>PostDetail</h2>
-
-        <div>
-          <p>{`Post ID : ${postId}`}</p>
-          <p>{title}</p>
-          <p>{description}</p>
-          <p>{image}</p>
-          <p>{text}</p>
-        </div>
-        <CommentForm postId={postId} />
-        <button onClick={onToggle}>{isFav ? "on" : "off"}</button>
-        <div>
-          {this.props.comments.map((comment) => (
-            <Comment key={comment._id} text={comment.text} />
-          ))}
+        <Header />
+        <div className={"post-page"}>
+          <div className={"post-detail"}>
+            <p className={"title"}>{title}</p>
+            <p className={"description"}>{description}</p>
+            <p>{image}</p>
+            <p>{text}</p>
+            <p>{Meteor.user().username}</p>
+          </div>
+          <div>
+            <CommentForm postId={postId} />
+            <Button onClick={onToggle}>{isFav ? "on" : "off"}</Button>
+            <div>
+              {this.props.comments.map((comment) => (
+                <Comment key={comment._id} text={comment.text} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );

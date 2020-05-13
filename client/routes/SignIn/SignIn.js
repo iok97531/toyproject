@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import React from "react";
 import { Input, Button } from "semantic-ui-react";
 import Header from "../../component/Header";
+import { Link } from "react-router-dom";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -16,11 +17,11 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <Header>header</Header>
+        <Header />
         <form className={"signin-form"} onSubmit={this.handleSubmit}>
           <div className={"signin-form title"}>Log In</div>
 
-          <div className={"signin-form__item"}>
+          <div className={"signin-form item"}>
             <span>Name or Email</span>
             <Input
               type="user"
@@ -29,7 +30,7 @@ class SignIn extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className={"signin-form__item"}>
+          <div className={"signin-form item"}>
             <span>Password</span>
             <Input
               type="password"
@@ -38,10 +39,12 @@ class SignIn extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className={"signin-form__item"}>
-            <Button className={"signin-form__item cancel-button"} type="submit">
-              Cancel
-            </Button>
+          <div className={"signin-form item"}>
+            <Link to={"/"}>
+              <Button className={"signin-form__item cancel-button"}>
+                CANCEL
+              </Button>
+            </Link>
             <Button className={"signin-form__item ok-button"} type="submit">
               OK
             </Button>

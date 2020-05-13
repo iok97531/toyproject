@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import PostCard from "../../component/PostCard";
 import { Posts } from "../../../imports/api/posts";
+import Header from "../../component/Header";
 
 class FavoriteContainer extends React.Component {
   render() {
@@ -10,18 +11,27 @@ class FavoriteContainer extends React.Component {
       return null;
     }
     if (!this.props.posts.length) {
-      return <p>No Favorite Posts</p>;
+      return (
+        <div>
+          <Header />
+          <h1>No Favorite Posts</h1>
+        </div>
+      );
     }
     return (
       <div>
-        {this.props.posts.map((post) => (
-          <PostCard
-            key={post._id}
-            postId={post._id}
-            title={post.title}
-            description={post.description}
-          />
-        ))}
+        <Header />
+        <h1>Favorite</h1>
+        <div className={"post-card-container"}>
+          {this.props.posts.map((post) => (
+            <PostCard
+              key={post._id}
+              postId={post._id}
+              title={post.title}
+              description={post.description}
+            />
+          ))}
+        </div>
       </div>
     );
   }

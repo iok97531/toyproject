@@ -1,57 +1,270 @@
 @import "./semantic.min.css";
+@mainColor: #535945;
+@whiteColor: #d0d0d0;
 
-@blueColor: #185e30;
-
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
 body {
-  color: #d0d0d0;
+  color: @whiteColor;
   background-color: #2c2c2c;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 header {
   width: 100%;
   height: 60px;
-  background-color: @blueColor;
-  text-align: center;
-  line-height: 60px;
-  font-size: 30px;
-  font-weight: bold;
+  background-color: @mainColor;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: @whiteColor;
+  }
+  .user-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: @whiteColor;
+  }
+  .button-container {
+    display: inline;
+    .button {
+      background-color: @mainColor;
+      border: 1px solid @whiteColor;
+      color: @whiteColor;
+      margin-left: 10px;
+    }
+  }
 }
 
-.signin-title {
-  font-size: 30px;
-  text-align: center;
+.post-card-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  width: 225px;
+  height: 300px;
+  background-color: @whiteColor;
+  border-radius: 5px;
+  margin: 20px 10px;
+  padding-top: 80px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: @mainColor;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 1.2em;
+    height: 3.6em;
+  }
+  .description {
+    font-size: 16px;
+    color: @mainColor;
+    font-weight: bold;
+    color: @mainColor;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: 1.2em;
+    height: 3.6em;
+  }
+  span {
+    margin: 0 5px;
+  }
+}
+.post-page {
+  display: flex;
+  flex-wrap: wrap;
+}
+.post-detail {
+  display: flex;
+  flex-direction: column;
+  background-color: @whiteColor;
+  padding: 40px 40px;
+  color: @mainColor;
+  min-height: 100vh;
+  min-width: 500px;
+  width: 50vw;
+  .title {
+    margin: 0 8%;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .description {
+    margin-top: 50px;
+    font-size: 20px;
+  }
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50vw;
+  padding: 20px 10%;
+  :nth-child(1) {
+    align-self: stretch;
+  }
+  .button {
+    margin-top: 10px;
+    background-color: @mainColor;
+    color: @whiteColor;
+  }
 }
 
 .signin-form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin-top: 50px;
-  height: 100vh;
   .title {
-    height: 30px;
     font-size: 30px;
-    text-align: center;
-    margin-bottom: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+    width: 350px;
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .ok-button {
+      background-color: @mainColor;
+      color: @whiteColor;
+      width: 100px;
+    }
+    .cancel-button {
+      color: @mainColor;
+      width: 100px;
+    }
   }
 }
 
-.signin-form__item {
+.signup-form {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 40vh;
-  .ok-button {
-    background-color: @blueColor;
-    color: white;
-    width: 100px;
+  margin-top: 50px;
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 25px;
   }
-  .cancel-button {
-    color: @blueColor;
-    border: 2px solid;
-    border-color: @blueColor;
-    width: 100px;
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 350px;
+    margin-top: 25px;
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  .button {
+    margin-top: 25px;
+    color: @whiteColor;
+    background-color: @mainColor;
+  }
+}
+
+.write-post-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .item {
+    display: flex;
+    align-items: start;
+    margin-top: 20px;
+    width: 70vw;
+    .input {
+      width: 100%;
+    }
+    .button {
+      margin-top: 10px;
+      background-color: @mainColor;
+      color: @whiteColor;
+    }
+  }
+  .button-container {
+    margin-top: 20px;
+    display: inline;
+
+    .button {
+      margin: 0 5px;
+      background-color: @mainColor;
+      color: @whiteColor;
+    }
+  }
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  .profile-form__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    margin-top: 20px;
+    span {
+      font-size: 20px;
+    }
+  }
+  .button {
+    margin-top: 20px;
+    background-color: #a52419;
+    color: @whiteColor;
+  }
+}
+
+.user-container {
+  display: flex;
+  height: 200px;
+  margin-top: 30px;
+  .user-list {
+    margin: 0 10px;
+    background-color: @mainColor;
+    width: 35vw;
+  }
+  .user-data {
+    margin: 0 10px;
+    background-color: @mainColor;
+    width: 25vw;
+  }
+  .chat {
+    margin: 0 10px;
+    background-color: @mainColor;
+    width: 40vw;
   }
 }

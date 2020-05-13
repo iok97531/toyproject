@@ -1,6 +1,7 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
-
+import Header from "../../component/Header";
+import { Input, Button } from "semantic-ui-react";
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -16,23 +17,61 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <p>email</p>
-        <input type="email" name="email" onChange={this.handleChange} />
-        <p>password</p>
-        <input type="password" name="password" onChange={this.handleChange} />
-        <p>password confirm</p>
-        <input
-          type="password"
-          name="passwordConfirm"
-          onChange={this.handleChange}
-        />
-        <p>user name</p>
-        <input type="text" name="userName" onChange={this.handleChange} />
-        <p>phone number</p>
-        <input type="text" name="phoneNumber" onChange={this.handleChange} />
-        <input type="submit" />
-      </form>
+      <div>
+        <Header />
+        <form className={"signup-form"} onSubmit={this.handleSubmit}>
+          <div className={"signup-form title"}>Sign Up</div>
+          <div className={"signup-form item"}>
+            <span>* Email</span>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Required Field"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className={"signup-form item"}>
+            <span>* Name</span>
+            <Input
+              type="text"
+              name="userName"
+              placeholder="Required Field"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className={"signup-form item"}>
+            <span>* Password</span>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Required Field"
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className={"signup-form item"}>
+            <span>* Confirm password</span>
+            <Input
+              type="password"
+              name="passwordConfirm"
+              placeholder="Required Field"
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className={"signup-form item"}>
+            <span>Phone number</span>
+            <Input
+              type="text"
+              name="phoneNumber"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <Button type="submit">SUBMIT</Button>
+          </div>
+        </form>
+      </div>
     );
   }
 
