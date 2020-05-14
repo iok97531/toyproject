@@ -90,43 +90,44 @@ header {
     margin: 0 5px;
   }
 }
+
 .post-page {
   display: flex;
   flex-wrap: wrap;
-}
-.post-detail {
-  display: flex;
-  flex-direction: column;
-  background-color: @whiteColor;
-  padding: 40px 40px;
-  color: @mainColor;
-  min-height: 100vh;
-  min-width: 500px;
-  width: 50vw;
-  .title {
-    margin: 0 8%;
-    font-size: 30px;
-    font-weight: bold;
+  justify-content: stretch;
+  .post-detail {
+    display: flex;
+    flex-direction: column;
+    background-color: @whiteColor;
+    padding: 40px 40px;
+    color: @mainColor;
+    min-height: 100vh;
+    min-width: 500px;
+    width: 50vw;
+    .title {
+      margin: 0 8%;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .description {
+      margin-top: 50px;
+      font-size: 20px;
+    }
   }
-  .description {
-    margin-top: 50px;
-    font-size: 20px;
-  }
-}
-
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 50vw;
-  padding: 20px 10%;
-  :nth-child(1) {
-    align-self: stretch;
-  }
-  .button {
-    margin-top: 10px;
-    background-color: @mainColor;
-    color: @whiteColor;
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px 10%;
+    width: 50vw;
+    :nth-child(1) {
+      align-self: stretch;
+    }
+    .button {
+      margin-top: 10px;
+      background-color: @mainColor;
+      color: @whiteColor;
+    }
   }
 }
 
@@ -215,7 +216,8 @@ header {
   }
   .button-container {
     margin-top: 20px;
-    display: inline;
+    display: flex;
+    flex-direction: row;
 
     .button {
       margin: 0 5px;
