@@ -1,2 +1,2 @@
-import CommentContainer from "./CommentContainer.js";
-export default CommentContainer;
+import Comment from "./Comment.js";
+export default Comment;

@@ -1,13 +1,12 @@
 import React from "react";
 import CommentForm from "../../components/CommentForm";
 import Comment from "../../components/Comment";
-import Header from "../../components/Header";
 import { Meteor } from "meteor/meteor";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const PostDetailPresenter = (props) => {
-  if (!props.post) {
-    return <p>error</p>;
+  if (props.post === undefined) {
+    return null;
   }
   const {
     isFavorite,
@@ -17,7 +16,6 @@ const PostDetailPresenter = (props) => {
 
   return (
     <div>
-      <Header />
       <div className={"post-page"}>
         <div className={"post-detail"}>
           <div onClick={onToggle}>
@@ -33,12 +31,17 @@ const PostDetailPresenter = (props) => {
           <p>{content}</p>
           <p>{Meteor.user().username}</p>
         </div>
-        <div>
+        <div className={"comments"}>
           <CommentForm postId={postId} />
 
           <div>
             {props.comments.map((comment) => (
-              <Comment key={comment._id} content={comment.content} />
+              <Comment
+                key={comment._id}
+                userName={comment.userName}
+                content={comment.content}
+                createdAt={comment.createdAt}
+              />
             ))}
           </div>
         </div>

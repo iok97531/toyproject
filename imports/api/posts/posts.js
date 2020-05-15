@@ -21,6 +21,7 @@ Meteor.methods({
       description,
       image,
       content,
+      userName: Meteor.user().username,
       createdAt: new Date(),
     });
   },

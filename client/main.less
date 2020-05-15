@@ -13,7 +13,15 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+main {
+  padding: 20px 20%;
+  margin-top: 60px;
+}
+
 header {
+  top: 0;
+  position: fixed;
+  z-index: 1;
   width: 100%;
   height: 60px;
   background-color: @mainColor;
@@ -41,6 +49,58 @@ header {
   }
 }
 
+.favorite-icon {
+  cursor: pointer;
+}
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 10%;
+  min-width: 500px;
+  .chat-screen {
+    background-color: @whiteColor;
+    padding: 5% 5%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: scroll;
+    p {
+      font-size: 20px;
+      background-color: @mainColor;
+      color: @whiteColor;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      padding: 10px 20px;
+    }
+    .my-message {
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+      background-color: #2c2c2c;
+    }
+    .others-message {
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .form {
+    display: flex;
+    align-items: center;
+    background-color: @whiteColor;
+    padding: 10px 10px;
+    .input {
+      width: 80%;
+    }
+    .button {
+      width: 20%;
+      background-color: @mainColor;
+      color: @whiteColor;
+    }
+  }
+}
+
 .post-card-container {
   display: flex;
   align-items: flex-start;
@@ -55,10 +115,12 @@ header {
   background-color: @whiteColor;
   border-radius: 5px;
   margin: 20px 10px;
-  padding-top: 80px;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
+  padding: 40px;
+  transition: transform 0.3s;
+  position: relative;
+  &:hover {
+    transform: translateY(-10px);
+  }
   .title {
     font-size: 22px;
     font-weight: bold;
@@ -103,7 +165,7 @@ header {
     color: @mainColor;
     min-height: 100vh;
     min-width: 500px;
-    width: 50vw;
+    width: 100%;
     .title {
       margin: 0 8%;
       font-size: 30px;
@@ -114,19 +176,31 @@ header {
       font-size: 20px;
     }
   }
-  .comment-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 20px 10%;
-    width: 50vw;
-    :nth-child(1) {
-      align-self: stretch;
+  .comments {
+    padding: 20px 40px;
+    width: 100%;
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      :nth-child(1) {
+        align-self: stretch;
+      }
+      .button {
+        margin-top: 10px;
+        background-color: @mainColor;
+        color: @whiteColor;
+      }
     }
-    .button {
-      margin-top: 10px;
-      background-color: @mainColor;
-      color: @whiteColor;
+    .comment {
+      display: flex;
+      flex-direction: column;
+      background-color: @whiteColor;
+      color: @mainColor;
+      margin-top: 40px;
+      padding: 20px 20px;
+      border-radius: 5px;
     }
   }
 }

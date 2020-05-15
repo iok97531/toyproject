@@ -3,7 +3,6 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Posts } from "../../../api/posts/posts";
 import { Meteor } from "meteor/meteor";
 import PostCard from "../../components/PostCard";
-import Header from "../../components/Header";
 
 class Home extends React.Component {
   constructor(props) {
@@ -29,15 +28,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <div className={"user-container"}>
-          <div className={"user-list"}>user list</div>
-          <div className={"user-data"}>user data</div>
-          <div className={"chat"}>chat</div>
-        </div>
-        <div className={"post-card-container"}>{this.renderPostCards()}</div>
-      </div>
+      <div className={"post-card-container"}>{this.renderPostCards()}</div>
     );
   }
 }

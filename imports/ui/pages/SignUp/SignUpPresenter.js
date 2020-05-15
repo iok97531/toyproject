@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../../components/Header";
 import { Input, Button } from "semantic-ui-react";
 
 const SignUpPresenter = (props) => {
   const { handleSubmit, handleChange } = props;
   return (
     <div>
-      <Header />
       <form className={"signup-form"} onSubmit={handleSubmit}>
         <div className={"signup-form title"}>Sign Up</div>
         <div className={"signup-form item"}>

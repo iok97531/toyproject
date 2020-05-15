@@ -1,13 +1,11 @@
 import React from "react";
 import { Input, Button } from "semantic-ui-react";
-import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 
 const SignInPresenter = (props) => {
   const { handleSubmit, handleChange } = props;
   return (
     <div>
-      <Header />
       <form className={"signin-form"} onSubmit={handleSubmit}>
         <div className={"signin-form title"}>Log In</div>
 

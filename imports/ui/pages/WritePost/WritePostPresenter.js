@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../components/Header";
 import { Input, Button, TextArea, Form } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +6,6 @@ const WritePostPresenter = (props) => {
   const { handleSubmit, handleChange } = props;
   return (
     <div>
-      <Header />
       <Form className={"write-post-form"} onSubmit={handleSubmit}>
         <div className={"write-post-form item"}>
           <p>TITLE</p>

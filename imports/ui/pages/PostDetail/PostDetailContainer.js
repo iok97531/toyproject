@@ -31,10 +31,8 @@ class PostDetailContainer extends React.Component {
 
 export default withTracker((props) => {
   const { postId } = props.match.params;
-  const postHandle = Meteor.subscribe("post", postId);
-  const loading = postHandle.ready();
-
-  const commentsHandle = Meteor.subscribe("comments");
+  Meteor.subscribe("post", postId);
+  Meteor.subscribe("comments");
 
   let isFavorite;
   if (Meteor.user()) {
@@ -43,7 +41,6 @@ export default withTracker((props) => {
     isFavorite = false;
   }
   return {
-    loading,
     post: Posts.find({ _id: postId }).fetch()[0],
     comments: Comments.find({ postId }).fetch(),
     isFavorite,

@@ -1,7 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import React from "react";
 import { Input, Button } from "semantic-ui-react";
-import Header from "../../components/Header";
 
 class ProfilePresenter extends React.Component {
   render() {
@@ -11,7 +10,6 @@ class ProfilePresenter extends React.Component {
     const { username, emails, profile } = this.props.user;
     return (
       <div>
-        <Header />
         <h1>Profile</h1>
         <div className={"profile-form"}>
           <div className={"profile-form__item"}>

@@ -42,10 +42,11 @@ class WritePostContainer extends React.Component {
       this.setState({
         [name]: undefined,
       });
+    } else {
+      this.setState({
+        [name]: value,
+      });
     }
-    this.setState({
-      [name]: value,
-    });
   };
 }
 
