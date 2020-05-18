@@ -3,11 +3,11 @@ import { Input, Button, TextArea, Form } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const WritePostPresenter = (props) => {
-  const { handleSubmit, handleChange } = props;
+  const { handleSubmit, handleChange, handleFileInput } = props;
   return (
     <div>
       <Form className={"write-post-form"} onSubmit={handleSubmit}>
-        <div className={"write-post-form item"}>
+        <div className={"form__item"}>
           <p>TITLE</p>
           <Input
             type="text"
@@ -16,7 +16,7 @@ const WritePostPresenter = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className={"write-post-form item"}>
+        <div className={"form__item"}>
           <p>DESCRIPTION</p>
           <Input
             type="text"
@@ -25,12 +25,17 @@ const WritePostPresenter = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className={"write-post-form item"}>
+        <div className={"form__item"}>
           <p>IMAGE</p>
-          <Input type="img" name="image" onChange={handleChange} />
+          <Input
+            type="file"
+            name="image"
+            placeholder="Upload image..."
+            onChange={handleFileInput}
+          />
           <Button>UPLOAD</Button>
         </div>
-        <div className={"write-post-form item"}>
+        <div className={"form__item"}>
           <p>TEXT</p>
           <TextArea
             type="text"
@@ -39,7 +44,7 @@ const WritePostPresenter = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className={"write-post-form button-container"}>
+        <div className={"form__button-container"}>
           <Link to="/">
             <Button>CANCEL</Button>
           </Link>

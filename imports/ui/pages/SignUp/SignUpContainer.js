@@ -8,17 +8,33 @@ class SignUpContainer extends React.Component {
     super(props);
 
     this.state = {
-      email: undefined,
-      password: undefined,
-      passwordConfirm: undefined,
-      username: undefined,
-      phoneNumber: undefined,
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      username: "",
+      phoneNumber: "",
     };
   }
 
   render() {
+    const {
+      email,
+      password,
+      passwordConfirm,
+      username,
+      phoneNumber,
+    } = this.state;
+
+    const disabled =
+      email === "" ||
+      password === "" ||
+      passwordConfirm === "" ||
+      username === "" ||
+      phoneNumber === "";
+
     return (
       <SignUpPresenter
+        disabled={disabled}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
       />
@@ -35,8 +51,21 @@ class SignUpContainer extends React.Component {
       phoneNumber,
     } = this.state;
 
+    if (email === "") {
+      console.log("Email is required.");
+      return null;
+    }
+    if (username === "") {
+      console.log("Username is required.");
+      return null;
+    }
+    if (password === "" || passwordConfirm === "") {
+      console.log("Password is required.");
+      return null;
+    }
     if (password !== passwordConfirm) {
-      throw new Meteor.Error("Password Error", "Passwords does not match");
+      console.log("Passwords does not match");
+      return null;
     }
 
     signUp.call({ email, password, username, phoneNumber }, (error, result) => {
@@ -56,15 +85,9 @@ class SignUpContainer extends React.Component {
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (value === "") {
-      this.setState({
-        [name]: undefined,
-      });
-    } else {
-      this.setState({
-        [name]: value,
-      });
-    }
+    this.setState({
+      [name]: value,
+    });
   };
 }
 

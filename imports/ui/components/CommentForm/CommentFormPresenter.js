@@ -6,6 +6,7 @@ const CommentFormPresenter = (props) => (
     <TextArea
       type="text"
       name="text"
+      disabled={!Meteor.userId()}
       placeholder={"Leave comments..."}
       onChange={props.onChange}
     />

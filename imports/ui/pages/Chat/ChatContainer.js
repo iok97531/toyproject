@@ -8,51 +8,48 @@ class ChatContainer extends React.Component {
     super(props);
 
     this.state = {
-      text: undefined,
+      messageText: "",
     };
   }
 
   render() {
     return (
       <ChatPresenter
+        messages={this.props.messages}
+        value={this.state.messageText}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        messages={this.props.messages}
       />
     );
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { messageText } = this.state;
 
-    const { text } = this.state;
-
-    Meteor.call("messages.create", text, (error) => {
+    if (messageText === "") {
+      return null;
+    }
+    Meteor.call("messages.create", messageText, (error) => {
       if (error) {
         console.log(error.reason);
       }
     });
+    this.setState({ messageText: "" });
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (value === "") {
-      this.setState({
-        [name]: undefined,
-      });
-    } else {
-      this.setState({
-        [name]: value,
-      });
-    }
+    this.setState({
+      [name]: value,
+    });
   };
 }
 
 export default withTracker(() => {
   Meteor.subscribe("messages");
-
   return {
-    messages: Messages.find({}, { sort: { createAt: -1 } }).fetch(),
+    messages: Messages.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(ChatContainer);

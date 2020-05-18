@@ -12,12 +12,12 @@ class PostCard extends React.Component {
     return (
       <Link to={`/posts/${this.props.postId}`}>
         <div className={"post-card"}>
-          <p className={"title"}>{this.props.title}</p>
-          <p className={"description"}>{this.props.description}</p>
+          <p className={"card__title"}>{this.props.title}</p>
+          <p className={"card__description"}>{this.props.description}</p>
           <div>
-            <AiFillHeart />
+            <AiFillHeart className={"card__icon"} />
             <span>0</span>
-            <BsFillChatDotsFill />
+            <BsFillChatDotsFill className={"card__icon"} />
             <span>0</span>
           </div>
         </div>

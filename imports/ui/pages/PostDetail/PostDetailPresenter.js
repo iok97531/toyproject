@@ -18,18 +18,19 @@ const PostDetailPresenter = (props) => {
     <div>
       <div className={"post-page"}>
         <div className={"post-detail"}>
-          <div onClick={onToggle}>
-            {isFavorite ? (
-              <AiFillHeart className={"favorite-icon"} size="30" />
-            ) : (
-              <AiOutlineHeart className={"favorite-icon"} size="30" />
-            )}
-          </div>
+          {Meteor.userId() ? (
+            <div onClick={onToggle}>
+              {isFavorite ? (
+                <AiFillHeart className={"favorite-icon"} size="30" />
+              ) : (
+                <AiOutlineHeart className={"favorite-icon"} size="30" />
+              )}
+            </div>
+          ) : null}
           <p className={"title"}>{title}</p>
           <p className={"description"}>{description}</p>
           <p>{image}</p>
           <p>{content}</p>
-          <p>{Meteor.user().username}</p>
         </div>
         <div className={"comments"}>
           <CommentForm postId={postId} />

@@ -25,7 +25,7 @@ export const signUp = new ValidatedMethod({
       email,
       password,
       username,
-      profile: { phoneNumber, favPostIds: [] },
+      profile: { phoneNumber: phoneNumber | " ", favPostIds: [] },
     });
 
     return true;
@@ -33,10 +33,20 @@ export const signUp = new ValidatedMethod({
 });
 
 Meteor.methods({
-  "users.delete"() {
-    Meteor.users.remove(Meteor.user()._id);
+  "users.update"({ password, phoneNumber }) {
+    check(password, String);
+    if (password) {
+      Accounts.setPassword(this.userId, password);
+    }
+
+    if (phoneNumber) {
+      Meteor.users.update(this.userId, {
+        $set: {
+          profile: { phoneNumber },
+        },
+      });
+    }
   },
-  "users.update"() {},
   "users.toggleFav"(postId) {
     check(postId, String);
 

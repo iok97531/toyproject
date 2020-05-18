@@ -6,14 +6,19 @@ class SignInContainer extends React.Component {
     super(props);
 
     this.state = {
-      user: undefined,
-      password: undefined,
+      user: "",
+      password: "",
+      errorMessage: "",
     };
   }
 
   render() {
+    const { user, password, errorMessage } = this.state;
+    const disabled = user === "" || password === "";
     return (
       <SignInPresenter
+        disabled={disabled}
+        errorMessage={errorMessage}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
       />
@@ -25,13 +30,13 @@ class SignInContainer extends React.Component {
 
     const { user, password } = this.state;
 
-    if (!user) {
+    if (user === "") {
       console.log("Name or email is required.");
-      return;
+      return null;
     }
-    if (!password) {
+    if (password === "") {
       console.log("Password is required.");
-      return;
+      return null;
     }
 
     Meteor.loginWithPassword(user, password, (error, result) => {
@@ -47,11 +52,6 @@ class SignInContainer extends React.Component {
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (value === "") {
-      this.setState({
-        [name]: undefined,
-      });
-    }
     this.setState({
       [name]: value,
     });

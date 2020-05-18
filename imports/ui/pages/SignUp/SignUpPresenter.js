@@ -2,55 +2,62 @@ import React from "react";
 import { Input, Button } from "semantic-ui-react";
 
 const SignUpPresenter = (props) => {
-  const { handleSubmit, handleChange } = props;
+  const { disabled, handleSubmit, handleChange } = props;
   return (
     <div>
       <form className={"signup-form"} onSubmit={handleSubmit}>
-        <div className={"signup-form title"}>Sign Up</div>
-        <div className={"signup-form item"}>
+        <div className={"form__title"}>Sign Up</div>
+        <div className={"form__item"}>
           <span>* Email</span>
           <Input
             type="email"
             name="email"
-            placeholder="Required Field"
+            placeholder="Required field"
             onChange={handleChange}
           />
         </div>
-        <div className={"signup-form item"}>
+        <div className={"form__item"}>
           <span>* Name</span>
           <Input
             type="text"
             name="username"
-            placeholder="Required Field"
+            placeholder="Required field"
             onChange={handleChange}
           />
         </div>
-        <div className={"signup-form item"}>
+        <div className={"form__item"}>
           <span>* Password</span>
           <Input
             type="password"
             name="password"
-            placeholder="Required Field"
+            placeholder="Required field"
             onChange={handleChange}
           />
         </div>
 
-        <div className={"signup-form item"}>
+        <div className={"form__item"}>
           <span>* Confirm password</span>
           <Input
             type="password"
             name="passwordConfirm"
-            placeholder="Required Field"
+            placeholder="Required field"
             onChange={handleChange}
           />
         </div>
 
-        <div className={"signup-form item"}>
-          <span>Phone number</span>
-          <Input type="text" name="phoneNumber" onChange={handleChange} />
+        <div className={"form__item"}>
+          <span>* Phone number</span>
+          <Input
+            type="text"
+            name="phoneNumber"
+            placeholder="Requied field"
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <Button type="submit">SUBMIT</Button>
+          <Button type="submit" disabled={disabled}>
+            SUBMIT
+          </Button>
         </div>
       </form>
     </div>

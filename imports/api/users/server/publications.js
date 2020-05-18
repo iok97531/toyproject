@@ -1,4 +1,6 @@
-Meteor.publish("userData", (userId) => {
-  return Meteor.users.find({ _id: userId }, { fields: { password: 0 } });
+Meteor.publish("users", () => {
+  return Meteor.users.find(
+    {},
+    { fields: { username: 1, emails: 1, profile: 1 } }
+  );
 });
-// Should add username profilephoto on comments

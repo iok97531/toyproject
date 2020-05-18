@@ -7,10 +7,11 @@ class WritePostContainer extends React.Component {
     super(props);
 
     this.state = {
-      title: undefined,
-      description: undefined,
-      image: undefined,
-      content: undefined,
+      title: null,
+      description: null,
+      image: null,
+      content: null,
+      selectedImage: null,
     };
   }
 
@@ -19,9 +20,30 @@ class WritePostContainer extends React.Component {
       <WritePostPresenter
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
+        handleFileInput={this.handleFileInput}
       />
     );
   }
+
+  handleFileInput = (event) => {
+    this.setState({
+      selectedImage: event.target.files[0],
+    });
+  };
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (value === "") {
+      this.setState({
+        [name]: null,
+      });
+    } else {
+      this.setState({
+        [name]: value,
+      });
+    }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -33,20 +55,6 @@ class WritePostContainer extends React.Component {
         console.log(error.reason);
       }
     });
-  };
-
-  handleChange = (event) => {
-    const { name, value } = event.target;
-
-    if (value === "") {
-      this.setState({
-        [name]: undefined,
-      });
-    } else {
-      this.setState({
-        [name]: value,
-      });
-    }
   };
 }
 

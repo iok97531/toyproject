@@ -2,7 +2,7 @@ import React from "react";
 import { Input, Button, Form } from "semantic-ui-react";
 import Message from "../../components/Message";
 
-const ChatPresenter = ({ handleChange, handleSubmit, messages }) => (
+const ChatPresenter = ({ handleChange, handleSubmit, messages, value }) => (
   <div className={"chat-page"}>
     <div className="chat-screen">
       {messages.map((message) => (
@@ -13,10 +13,11 @@ const ChatPresenter = ({ handleChange, handleSubmit, messages }) => (
         />
       ))}
     </div>
-    <Form onSubmit={handleSubmit}>
+    <Form className="chat-form" onSubmit={handleSubmit}>
       <Input
         type="text"
-        name="text"
+        value={value}
+        name="messageText"
         placeholder="Send massage..."
         onChange={handleChange}
       />
