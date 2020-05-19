@@ -6,8 +6,22 @@ import { Comments } from "../../../api/comments/comments";
 import { withTracker } from "meteor/react-meteor-data";
 
 class PostDetailContainer extends React.Component {
-  handleToggleFav = () => {
-    Meteor.call("users.toggleFav", this.props.post._id, (error, result) => {
+  render() {
+    const { post, comments, isFavorite } = this.props;
+
+    return (
+      <PostDetailPresenter
+        post={post}
+        comments={comments}
+        isFavorite={isFavorite}
+        onToggle={this.handleToggleFavorite}
+      />
+    );
+  }
+
+  handleToggleFavorite = () => {
+    const { post } = this.props;
+    Meteor.call("users.toggleFavorite", post._id, (error, result) => {
       if (error) {
         console.log(error);
       }
@@ -16,17 +30,6 @@ class PostDetailContainer extends React.Component {
       }
     });
   };
-
-  render() {
-    return (
-      <PostDetailPresenter
-        post={this.props.post}
-        comments={this.props.comments}
-        onToggle={this.handleToggleFav}
-        isFavorite={this.props.isFavorite}
-      />
-    );
-  }
 }
 
 export default withTracker((props) => {
@@ -36,7 +39,7 @@ export default withTracker((props) => {
 
   let isFavorite;
   if (Meteor.user()) {
-    isFavorite = Meteor.user().profile.favPostIds.indexOf(postId) !== -1;
+    isFavorite = Meteor.user().profile.favoritePosts.indexOf(postId) !== -1;
   } else {
     isFavorite = false;
   }

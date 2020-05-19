@@ -1,11 +1,11 @@
 import React from "react";
 import PostCard from "../../components/PostCard";
 
-const FavoritePresenter = (props) => {
-  if (!props.posts) {
+const FavoritePresenter = ({ posts }) => {
+  if (!posts) {
     return null;
   }
-  if (!props.posts.length) {
+  if (!posts.length) {
     return (
       <div>
         <h1>No Favorite Posts</h1>
@@ -16,13 +16,8 @@ const FavoritePresenter = (props) => {
     <div>
       <h1>Favorite</h1>
       <div className={"post-card-container"}>
-        {props.posts.map((post) => (
-          <PostCard
-            key={post._id}
-            postId={post._id}
-            title={post.title}
-            description={post.description}
-          />
+        {posts.map((id) => (
+          <PostCard key={id} postId={id} />
         ))}
       </div>
     </div>

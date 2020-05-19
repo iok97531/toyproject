@@ -1,6 +1,7 @@
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 import SimpleSchema from "simpl-schema";
 import { check } from "meteor/check";
+import { Posts } from "../posts/posts";
 
 SimpleSchema.defineValidationErrorTransform((error) => {
   const ddpError = new Meteor.Error(error.message);
@@ -18,14 +19,14 @@ export const signUp = new ValidatedMethod({
     email: { type: String },
     password: { type: String },
     username: { type: String },
-    phoneNumber: { type: String, optional: true },
+    phoneNumber: { type: String },
   }).validator(),
   run({ email, password, username, phoneNumber }) {
     Accounts.createUser({
       email,
       password,
       username,
-      profile: { phoneNumber: phoneNumber | " ", favPostIds: [] },
+      profile: { phoneNumber, favoritePosts: [] },
     });
 
     return true;
@@ -33,37 +34,44 @@ export const signUp = new ValidatedMethod({
 });
 
 Meteor.methods({
-  "users.update"({ password, phoneNumber }) {
+  "users.update"(password, phoneNumber) {
     check(password, String);
-    if (password) {
+    check(phoneNumber, String);
+    if (password !== "") {
       Accounts.setPassword(this.userId, password);
     }
 
-    if (phoneNumber) {
+    if (
+      phoneNumber !== "" &&
+      phoneNumber !== Meteor.user().profile.phoneNumber
+    ) {
       Meteor.users.update(this.userId, {
         $set: {
-          profile: { phoneNumber },
+          "profile.phoneNumber": phoneNumber,
         },
       });
     }
   },
-  "users.toggleFav"(postId) {
+  "users.toggleFavorite"(postId) {
     check(postId, String);
 
-    posts = Meteor.user().profile.favPostIds;
+    posts = Meteor.user().profile.favoritePosts;
 
-    if (posts.indexOf(postId) !== -1) {
-      posts.splice(posts.indexOf(postId), 1);
-    } else {
+    if (posts.indexOf(postId) === -1) {
       posts.push(postId);
+      Posts.update(postId, {
+        $inc: { numLikes: 1 },
+      });
+    } else {
+      posts.splice(posts.indexOf(postId), 1);
+      Posts.update(postId, {
+        $inc: { numLikes: -1 },
+      });
     }
 
     Meteor.users.update(this.userId, {
       $set: {
-        profile: {
-          phoneNumber: Meteor.user().profile.phoneNumber,
-          favPostIds: posts,
-        },
+        "profile.favoritePosts": posts,
       },
     });
   },

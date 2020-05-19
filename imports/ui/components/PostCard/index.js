@@ -1,2 +1,2 @@
-import PostCard from "./PostCard";
-export default PostCard;
+import PostCardContainer from "./PostCardContainer.js";
+export default PostCardContainer;

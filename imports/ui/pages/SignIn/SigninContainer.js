@@ -39,12 +39,11 @@ class SignInContainer extends React.Component {
       return null;
     }
 
-    Meteor.loginWithPassword(user, password, (error, result) => {
+    Meteor.loginWithPassword(user, password, (error) => {
       if (error) {
         console.log(error.reason);
-      }
-      if (result) {
-        console.log(result);
+      } else {
+        console.log("Welcome!");
       }
     });
   };

@@ -35,7 +35,12 @@ class ProfileContainer extends React.Component {
     event.preventDefault();
     const { password, confirmPassword, phoneNumber } = this.state;
 
-    if (password === "" && confirmPassword === "" && phoneNumber === "") {
+    if (
+      password === "" &&
+      confirmPassword === "" &&
+      (phoneNumber === "" ||
+        phoneNumber === this.props.user.profile.phoneNumber)
+    ) {
       console.log("Update require more than 1 field.");
       return null;
     }
@@ -45,17 +50,14 @@ class ProfileContainer extends React.Component {
       return null;
     }
 
-    const updateFields = {
-      password,
-      phoneNumber,
-    };
-    if (password === "") {
-      updateFields.password = null;
-    }
-    if (phoneNumber === "") {
-      updateFields.phoneNumber = null;
-    }
-    Meteor.call("users.update", updateFields);
+    Meteor.call("users.update", password, phoneNumber, (error) => {
+      if (error) {
+        console.log(error.reason);
+      } else {
+        console.log("Profile updated");
+        this.props.history.push("/");
+      }
+    });
   };
 
   handleLogOut = () => {

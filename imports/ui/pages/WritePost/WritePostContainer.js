@@ -7,11 +7,11 @@ class WritePostContainer extends React.Component {
     super(props);
 
     this.state = {
-      title: null,
-      description: null,
-      image: null,
-      content: null,
-      selectedImage: null,
+      title: "",
+      description: "",
+      image: "",
+      content: "",
+      selectedImage: "",
     };
   }
 
@@ -34,15 +34,9 @@ class WritePostContainer extends React.Component {
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (value === "") {
-      this.setState({
-        [name]: null,
-      });
-    } else {
-      this.setState({
-        [name]: value,
-      });
-    }
+    this.setState({
+      [name]: value,
+    });
   };
 
   handleSubmit = (event) => {
@@ -50,9 +44,20 @@ class WritePostContainer extends React.Component {
 
     const { title, description, image, content } = this.state;
 
+    if (title === "") {
+      console.log("Title is required");
+      return null;
+    }
+    if (content === "") {
+      console.log("Content is required");
+      return null;
+    }
+
     Meteor.call("posts.create", title, description, image, content, (error) => {
       if (error) {
         console.log(error.reason);
+      } else {
+        this.props.history.push("/");
       }
     });
   };

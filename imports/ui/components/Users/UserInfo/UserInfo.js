@@ -1,8 +1,9 @@
 import React from "react";
 
-const UsersPresenter = ({ users, selectedUser, handleClick }) => {
+const UserInfo = ({ selectedUser }) => {
   return (
     <div>
+      <h2>User Info</h2>
       <div className="user-data">
         {selectedUser ? (
           <div>
@@ -14,21 +15,14 @@ const UsersPresenter = ({ users, selectedUser, handleClick }) => {
               </div>
             ) : (
               <p>Sign in please!</p>
-            )}
+            )}{" "}
           </div>
         ) : (
-          ""
+          <p>Select user</p>
         )}
-      </div>
-      <div className="user-list">
-        {users.map((user) => (
-          <option key={user._id} value={user._id} onClick={handleClick}>
-            {user.username}
-          </option>
-        ))}
       </div>
     </div>
   );
 };
 
-export default UsersPresenter;
+export default UserInfo;

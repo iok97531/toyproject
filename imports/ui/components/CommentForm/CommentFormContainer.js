@@ -7,15 +7,16 @@ class CommentFormContainer extends React.Component {
     super(props);
 
     this.state = {
-      text: "",
+      commentText: "",
     };
   }
 
   render() {
     return (
       <CommentFormPresenter
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
+        value={this.state.commentText}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
       />
     );
   }
@@ -23,13 +24,16 @@ class CommentFormContainer extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { text } = this.state;
+    const { commentText } = this.state;
     const { postId } = this.props;
 
-    Meteor.call("comments.create", text, postId, (error) => {
+    Meteor.call("comments.create", commentText, postId, (error) => {
       if (error) {
         console.log(error);
       }
+      this.setState({
+        commentText: "",
+      });
     });
   };
 

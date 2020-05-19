@@ -1,9 +1,10 @@
 import React from "react";
 import { Input, Button, Form } from "semantic-ui-react";
-import Message from "../../components/Message";
+import Message from "../Message";
 
 const ChatPresenter = ({ handleChange, handleSubmit, messages, value }) => (
   <div className={"chat-page"}>
+    <h2>Global chat</h2>
     <div className="chat-screen">
       {messages.map((message) => (
         <Message
