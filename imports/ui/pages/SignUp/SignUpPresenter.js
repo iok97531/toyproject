@@ -48,7 +48,7 @@ const SignUpPresenter = (props) => {
         <div className={"form__item"}>
           <span>* Phone number</span>
           <Input
-            type="text"
+            type="number"
             name="phoneNumber"
             placeholder="Requied field"
             onChange={handleChange}

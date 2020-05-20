@@ -8,16 +8,34 @@ import { withTracker } from "meteor/react-meteor-data";
 class PostDetailContainer extends React.Component {
   render() {
     const { post, comments, isFavorite } = this.props;
-
+    if (!post) {
+      this.props.history.push("/");
+    }
     return (
       <PostDetailPresenter
         post={post}
         comments={comments}
         isFavorite={isFavorite}
-        onToggle={this.handleToggleFavorite}
+        handleDelete={this.handleDelete}
+        handleToggleFavorite={this.handleToggleFavorite}
       />
     );
   }
+
+  handleDelete = () => {
+    const { post } = this.props;
+    if (post.userId !== Meteor.userId()) {
+      console.log("You are not authorized");
+      return null;
+    }
+    Meteor.call("posts.delete", post._id, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        this.props.history.push("/");
+      }
+    });
+  };
 
   handleToggleFavorite = () => {
     const { post } = this.props;

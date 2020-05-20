@@ -23,6 +23,13 @@ class ChatContainer extends React.Component {
     );
   }
 
+  componentDidUpdate() {
+    const chatScreen = document.querySelector(".chat-screen");
+    if (chatScreen) {
+      chatScreen.scrollTop = chatScreen.scrollHeight;
+    }
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { messageText } = this.state;

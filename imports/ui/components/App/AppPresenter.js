@@ -33,7 +33,6 @@ LoggedOutRoutes = () => (
   <Switch>
     <Route path={"/"} exact={true} component={Home} />
     <Route path={"/posts/:postId"} exact={true} component={PostDetail} />
-    <Route path={"/users"} exact={true} component={Users} />
     <Route path={"/signin"} exact={true} component={SignIn} />
     <Route path={"/signup"} exact={true} component={SignUp} />
     <Redirect from="*" to="/" />

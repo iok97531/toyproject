@@ -3,6 +3,7 @@ import CommentForm from "../../components/CommentForm";
 import Comment from "../../components/Comment";
 import { Meteor } from "meteor/meteor";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FiX } from "react-icons/fi";
 
 const PostDetailPresenter = (props) => {
   if (props.post === undefined) {
@@ -10,16 +11,18 @@ const PostDetailPresenter = (props) => {
   }
   const {
     isFavorite,
-    onToggle,
-    post: { _id: postId, title, description, image, content },
+    handleDelete,
+    handleToggleFavorite,
+    post: { _id: postId, title, description, image, content, userName },
   } = props;
 
   return (
     <div>
       <div className={"post-page"}>
         <div className={"post-detail"}>
+          <FiX className={"delete-icon"} onClick={handleDelete} size={"30"} />
           {Meteor.userId() ? (
-            <div onClick={onToggle}>
+            <div onClick={handleToggleFavorite}>
               {isFavorite ? (
                 <AiFillHeart className={"favorite-icon"} size="30" />
               ) : (
@@ -31,6 +34,7 @@ const PostDetailPresenter = (props) => {
           <p className={"description"}>{description}</p>
           <p>{image}</p>
           <p>{content}</p>
+          <p>{userName}</p>
         </div>
         <div className={"comments"}>
           <CommentForm postId={postId} />
@@ -39,9 +43,11 @@ const PostDetailPresenter = (props) => {
             {props.comments.map((comment) => (
               <Comment
                 key={comment._id}
+                commentId={comment._id}
+                userId={comment.userId}
                 userName={comment.userName}
-                content={comment.content}
                 createdAt={comment.createdAt}
+                content={comment.content}
               />
             ))}
           </div>

@@ -11,6 +11,7 @@ const UsersPresenter = ({
 }) => {
   return (
     <div className="user-container">
+      <h2>User Info</h2>
       <UserInfo selectedUser={selectedUser} />
       <div className="user-filter">
         <SearchBar handleChange={handleChange} />

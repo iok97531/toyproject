@@ -44,7 +44,7 @@ const ProfilePresenter = ({
         <div className={"form__item"}>
           <span>Phone number</span>
           <Input
-            type="text"
+            type="number"
             name="phoneNumber"
             defaultValue={profile.phoneNumber}
             placeholder={"Required field"}

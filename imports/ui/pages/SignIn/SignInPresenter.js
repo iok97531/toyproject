@@ -7,7 +7,7 @@ const SignInPresenter = (props) => {
   return (
     <div>
       <form className={"signin-form"} onSubmit={handleSubmit}>
-        <div className={"form__title"}>Log In</div>
+        <div className={"form__title"}>Sign In</div>
 
         <div className={"form__item"}>
           <span>Name or Email</span>

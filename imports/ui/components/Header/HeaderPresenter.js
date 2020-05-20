@@ -18,7 +18,7 @@ const Header = (props) => {
           </Link>
           <div className={"button-container"}>
             <Link to={"/write"}>
-              <Button>WRITE POST</Button>
+              <Button>WRITE</Button>
             </Link>
             <Link to={"/favorite"}>
               <Button>FAVORITE</Button>

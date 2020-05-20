@@ -3,7 +3,6 @@ import React from "react";
 const UserInfo = ({ selectedUser }) => {
   return (
     <div>
-      <h2>User Info</h2>
       <div className="user-data">
         {selectedUser ? (
           <div>
@@ -14,7 +13,7 @@ const UserInfo = ({ selectedUser }) => {
                 <p>{selectedUser.profile.phoneNumber}</p>
               </div>
             ) : (
-              <p>Sign in please!</p>
+              <p>Please sign in!</p>
             )}{" "}
           </div>
         ) : (

@@ -1,10 +1,21 @@
 import React from "react";
+import { FaUserCircle } from "react-icons/fa";
 
-const Message = ({ text, userId }) => {
+const Message = ({ messageText, userId }) => {
   if (userId === Meteor.userId()) {
-    return <p className={"my-message"}>{text}</p>;
+    return (
+      <div className={"my-message"}>
+        <FaUserCircle className={"user-icon"} size="35" />
+        <p>{messageText}</p>
+      </div>
+    );
   } else {
-    return <p className={"others-message"}>{text}</p>;
+    return (
+      <div className={"others-message"}>
+        <FaUserCircle className={"user-icon"} size="35" />
+        <p>{messageText}</p>
+      </div>
+    );
   }
 };
 

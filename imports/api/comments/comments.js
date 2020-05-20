@@ -3,6 +3,7 @@ import { Mongo } from "meteor/mongo";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 import SimpleSchema from "simpl-schema";
 import { Posts } from "../posts/posts";
+import { check } from "meteor/check";
 
 export const Comments = new Mongo.Collection("comments");
 
@@ -21,6 +22,7 @@ Meteor.methods({
       postId,
       content,
       userName: Meteor.user().username,
+      userId: this.userId,
       createdAt: new Date(),
     });
     Posts.update(postId, {
@@ -28,5 +30,10 @@ Meteor.methods({
       $inc: { numComments: 1 },
     });
   },
-  "comments.delete"() {},
+  "comments.delete"(commentId) {
+    check(commentId, String);
+    const comment = Comments.findOne({ _id: commentId });
+    Posts.update({ _id: comment.postId }, { $inc: { numComments: -1 } });
+    Comments.remove({ _id: commentId });
+  },
 });

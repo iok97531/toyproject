@@ -46,9 +46,9 @@ const WritePostPresenter = (props) => {
         </div>
         <div className={"form__button-container"}>
           <Link to="/">
-            <Button>CANCEL</Button>
+            <Button className={"cancel-button"}>CANCEL</Button>
           </Link>
-          <Button type="submit" name="submit">
+          <Button type="submit" name="submit" className={"ok-button"}>
             SUBMIT
           </Button>
         </div>
