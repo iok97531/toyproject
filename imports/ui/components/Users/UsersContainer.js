@@ -7,33 +7,21 @@ class UsersContainer extends React.Component {
 
     this.state = {
       selectedUser: null,
-      filterText: "",
     };
   }
 
   render() {
-    const { selectedUser, filterText } = this.state;
+    const { selectedUser } = this.state;
     return (
       <UsersPresenter
         selectedUser={selectedUser}
-        filterText={filterText}
         handleClick={this.handleClick}
-        handleChange={this.handleChange}
       />
     );
   }
-
   handleClick = (event) => {
     this.setState({
       selectedUser: Meteor.users.find(event.target.value).fetch()[0],
-    });
-  };
-
-  handleChange = (event) => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value,
     });
   };
 }

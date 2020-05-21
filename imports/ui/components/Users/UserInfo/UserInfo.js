@@ -3,7 +3,8 @@ import React from "react";
 const UserInfo = ({ selectedUser }) => {
   return (
     <div>
-      <div className="user-data">
+      <h2>User Info</h2>
+      <div className="user-info">
         {selectedUser ? (
           <div>
             <p>{selectedUser.username}</p>

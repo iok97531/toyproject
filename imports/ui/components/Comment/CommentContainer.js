@@ -6,7 +6,7 @@ class CommentContainer extends React.Component {
     const { userName, createdAt, content } = this.props;
     return (
       <CommentPresenter
-        username={userName}
+        userName={userName}
         createdAt={createdAt}
         content={content}
         handleDelete={this.handleDelete}

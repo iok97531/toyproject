@@ -15,7 +15,7 @@ body {
 }
 
 main {
-  padding: 20px 17%;
+  padding: 20px 20vw;
 }
 
 header {
@@ -60,24 +60,55 @@ header {
   display: flex;
   justify-content: space-between;
   height: 550px;
-  h2 {
-    background-color: @mainColor;
-    color: @whiteColor;
-    padding: 10px 20px;
-    height: 50px;
-  }
   .user-container {
-    background-color: @whiteColor;
     color: @mainColor;
-    margin-right: 20px;
-    width: 50%;
+    margin-right: 1vw;
+    width: 40vw;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .user-data {
+    .user-filter {
+      background-color: @whiteColor;
+      margin-right: 1vw;
+      .input {
+        width: 100%;
+      }
+      input[type="text"] {
+        font-size: 18px;
+      }
+      .user-list {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 100%;
+        width: 19vw;
+        button {
+          border: 1px solid @mainColor;
+          background-color: @whiteColor;
+          color: @mainColor;
+          text-align: center;
+          font-size: 20px;
+          margin: 1px;
+          padding: 10px 0;
+          &:hover {
+            background-color: @mainColor;
+            color: @whiteColor;
+          }
+        }
+      }
+    }
+    h2 {
+      background-color: @mainColor;
+      color: @whiteColor;
+      padding: 10px 20px;
+      height: 50px;
+      margin-bottom: 0;
+    }
+    .user-info {
       padding: 0 20px;
-      margin-top: 20px;
+      height: 500px;
+      width: 19vw;
+      background-color: @whiteColor;
       word-break: break-all;
       display: flex;
       flex-direction: column;
@@ -87,39 +118,10 @@ header {
       }
     }
   }
-  .user-filter {
-    background-color: @whiteColor;
-    .input {
-      width: 100%;
-    }
-    input[type="text"] {
-      font-size: 18px;
-    }
-    .user-list {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      height: 150px;
-      button {
-        border: 1px solid @mainColor;
-        background-color: @whiteColor;
-        color: @mainColor;
-        text-align: center;
-        font-size: 20px;
-        margin: 1px;
-        padding: 10px 0;
-        &:hover {
-          background-color: @mainColor;
-          color: @whiteColor;
-        }
-      }
-    }
-  }
+
   .chat-page {
     background-color: @whiteColor;
-    width: 50%;
+    width: 20vw;
     h2 {
       background-color: @mainColor;
       color: @whiteColor;
@@ -130,9 +132,9 @@ header {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      height: 100%;
+      height: 500px;
       .chat-screen {
-        height: 75%;
+        height: 420px;
         padding: 5% 5%;
         display: flex;
         flex-direction: column-reverse;
@@ -144,6 +146,9 @@ header {
           color: @whiteColor;
           border-radius: 20px;
           padding: 10px 18px;
+        }
+        span {
+          color: @mainColor;
         }
         .my-message {
           align-items: flex-end;
@@ -158,6 +163,7 @@ header {
           p {
             border-bottom-right-radius: 0;
             background-color: #2c2c2c;
+            margin-bottom: 0;
           }
         }
         .others-message {
@@ -171,6 +177,7 @@ header {
           }
           p {
             border-bottom-left-radius: 0;
+            margin-bottom: 0;
           }
         }
       }
@@ -183,13 +190,14 @@ header {
           width: 75%;
         }
         input[type="text"] {
-          font-size: 18px;
+          font-size: 16px;
         }
         .button {
           width: 25%;
           background-color: @mainColor;
           color: @whiteColor;
-          font-size: 18px;
+          padding: 0.785714em 1.3em;
+          font-size: 16px;
         }
       }
     }

@@ -13,6 +13,7 @@ const ChatPresenter = ({ handleChange, handleSubmit, messages, value }) => (
               key={message._id}
               userId={message.userId}
               messageText={message.text}
+              createdAt={message.createdAt}
             />
           ))}
         </div>

@@ -10,20 +10,24 @@ const PostCardPresenter = ({
   numLikes,
   numComments,
 }) => {
-  return (
-    <Link to={`/posts/${postId}`}>
-      <div className={"post-card"}>
-        <p className={"card__title"}>{title}</p>
-        <p className={"card__description"}>{description}</p>
-        <div>
-          <AiFillHeart className={"card__icon"} />
-          <span>{numLikes}</span>
-          <BsFillChatDotsFill className={"card__icon"} />
-          <span>{numComments}</span>
+  if (title) {
+    return (
+      <Link to={`/posts/${postId}`}>
+        <div className={"post-card"}>
+          <p className={"card__title"}>{title}</p>
+          <p className={"card__description"}>{description}</p>
+          <div>
+            <AiFillHeart className={"card__icon"} />
+            <span>{numLikes}</span>
+            <BsFillChatDotsFill className={"card__icon"} />
+            <span>{numComments}</span>
+          </div>
         </div>
-      </div>
-    </Link>
-  );
+      </Link>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default PostCardPresenter;
