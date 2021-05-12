@@ -18,7 +18,7 @@
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2",
-    "simpl-schema": "^1.7.1"
+    "simpl-schema": "^1.10.2"
   },
   "meteor": {
     "mainModule": {
